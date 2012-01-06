@@ -1,0 +1,33 @@
+To play the game, you first enter the name of the 
+program:
+
+bash$ mastermind
+
+then it asks you if two places can be the same color.
+If you say no here, two places cant be the same color, but
+if you say y, the color combination can be, for eksample,
+red, red, red, red. (which makes it harder)
+
+then it asks for tries. If you want really many tries, you have
+to widen you'r terminal a bit. There can be 1 try pr. 3 colums.
+
+It then finds the combination it wants to use, and a few nanoseconds
+later, you can press enter.
+
+Now it asks for a place. You could for eksample press 1.
+Then it asks for a color. You could for eksample press 3 for blue.
+A blue box now pops up at place 1 on the first try.
+When you have given 4 colors on diffrent places, it asks you if
+you want to make that count as a try. If you want,
+it finds out how many right colors on right places
+and how many right colors on wrong places you have placed,
+and goes on to try number 2 (if you did'nt enter 1 when it asked for tries.)
+
+You just keep on like that, till you either guess the right combination
+or run out of tries.
+
+If you are unlucky enough to run out of tries, it will be kind
+enough to show the right combination.
+
+
+Great fun, that!
