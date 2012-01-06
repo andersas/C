@@ -1,0 +1,20 @@
+The program is quite simple.
+To decrypt something, use
+"crypt key data"
+with key being the name of the key file and data
+being the name of the encrypted file.
+
+The program asks if the filename seems right.
+If it isn't (eg it's scrambled data)
+the keyfile and encrypted file dosn't match.
+Otherwise, just type "y".
+
+
+Encrypting goes like this:
+"crypt key data encrypt"
+where key is the key, data is the cleartext
+and encrypt signals that the data is supposed
+to be encrypted.
+It will ask for a filename to the encrypted
+file.
+
