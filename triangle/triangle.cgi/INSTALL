@@ -1,0 +1,14 @@
+Compile with the command
+
+	make
+
+The binary will now be in cgi-bin.
+
+To run the program from you'r homepage, you put the files in cgi-bin in
+you'r cgi-bin, and the file in wwwroot in you'r wwwroot (or htdocs etc.)
+
+Remember to change the the form to point to where you have put the program.
+
+
+
+Optionally you can make you'r own HTML Version.

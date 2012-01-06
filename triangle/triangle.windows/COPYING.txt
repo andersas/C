@@ -1,0 +1,7 @@
+You may freely redistribute this code, alter it in any way
+and do pretty much what you want with it, as long as you
+tell that i made the code i have made. (if you redistribute the
+entire program, i made all the code :-))
+
+If you redistribute the binary, you also have to redistribute
+the code.

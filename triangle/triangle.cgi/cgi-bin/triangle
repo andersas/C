@@ -1,0 +1,35 @@
+#!/usr/bin/perl
+
+&split_in_pairs;
+
+print "Content-type: text/html\n\n";
+
+print "<html>";
+print "<head>";
+print "<title>";
+print "Triangle";
+print "</title>";
+print "</head";
+print "<body>";
+
+print "<pre>\n";
+print `./Ctriangle $IND{'a'} $IND{'b'} $IND{'c'} $IND{'A'} $IND{'B'} $IND{'C'} $IND{'area'}`;
+print "</pre>\n";
+
+print "</body>";
+print "</html>";
+
+sub split_in_pairs{
+
+  read(STDIN, $input,$ENV{'CONTENT_LENGTH'});
+
+  @allpairs = split(/&/, $input);
+
+  foreach $pair (@allpairs) {
+
+    ($name, $value) = split(/=/, $pair);
+
+    $IND{$name} = $value;
+  }
+
+}

@@ -1,0 +1,17 @@
+To configure where you want the program to be placed
+type:
+
+	./configure
+
+Compile with the command
+
+	make
+
+and optionally type (possibly as root)
+
+	make install
+
+to install the program.
+
+If you place the program in you'r PATH you can just type
+"triangle" anywhere to start the program

@@ -1,0 +1,13 @@
+You feed this program with 3 informations about a triangle,
+for example two sides and an angle. The program will then
+find the other sides and angles in the triangle, and it
+will also find the area of the triangle.
+
+You can alternatly choose to give it 2 things about the triangle,
+for example an angle and a side and then the area of the triangle,
+then this program will also find the rest.
+
+Note that this job is impossible if you give it angle
+A and side a,
+B and side b,
+C and side c.

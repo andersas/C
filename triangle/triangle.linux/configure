@@ -1,0 +1,24 @@
+#/bin/sh
+
+cat > Makefile << EOF
+all : main
+
+main : 
+	gcc -o ./bin/triangle -lm ./src/main.c
+
+clean :
+	rm -f ./bin/triangle
+
+EOF
+
+echo "Where do you want to place the executeable?"
+read p
+echo >> Makefile
+echo "install:" >> Makefile
+echo -n "	cp -i ./bin/triangle " >> Makefile
+echo $p >> Makefile
+echo >> Makefile
+echo "uninstall:" >> Makefile
+echo -n "	rm -f " >> Makefile
+echo -n $p >> Makefile
+echo "/triangle" >> Makefile

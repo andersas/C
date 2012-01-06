@@ -1,0 +1,10 @@
+The binary in the bin folder was compiled with MinGW (http://www.mingw.org)
+on Windows XP Professional SP2
+
+It was compiled like this:
+
+src> windres -o icon.o icon.rc
+src> gcc -lm main.c icon.o -o ..\bin\triangle.exe
+
+
+Windres and gcc is from MinGW.

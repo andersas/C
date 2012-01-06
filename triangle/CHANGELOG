@@ -1,0 +1,78 @@
+Version 2.2
+
+*ALL VERSIONS BELOW 2.2 CONTAINS CALCULATION ERRORS*
+
+A typing error was discovered in the function twosides(),
+which caused a calculation error if you gave angle 
+B with the sides b and c.
+(solution 2)
+
+The entire twosides function has been the most buggy part of the program
+so far, so now i have decided to rewrite it.
+
+In this version, the program first rotates the triangle, so it always
+get angle A, nomatter what angle was specified and calculates that.
+Then, before giving output, it simply rotates it back again.
+
+This means that there is only one angle case to take care of.
+(And a heavily reduced chance of typing errors.)
+
+
+Also a minor input validation error when the program 
+sees if it has enought information to generate a new side
+using the area() function has been fixeed. Now it's only activated
+if there is one side and one angle (and not 2 angles or 2 sides)
+
+
+Version 2.1:
+
+A little has been changed.
+The way the program accepts user input now makes it a bit easier
+for the user to input the triangle.
+Whenever the program has three informations about the triangle,
+it skips the rest (so the user won't have to type a lot of zeros
+if he has 2 sides and angle A for example).
+
+Then Torben Vinther <tvinter@sol.dk> has designed a very nice Windows Explorer
+file icon for the program, so the program looks more "user freindly" in Windows.
+
+
+Version 2.0:
+
+Cool feature added.
+Now you don't have to know more then two things about
+the triangle if you have the area!!
+
+This feature was incredibly easy to add, so i can't see
+why i have'nt done this before.
+But here it is: version 2.0!
+
+Version 1.1.1:
+
+Fixed a few typing errors which resulted in bad output,
+in the function twosides().
+In case angle B or C was given with the sides b and c
+it overrode the usergiven variables and not the free variables,
+so the triangle went wrong.
+
+Try using version 1.1 and type, lets say, 
+a: 0
+b: 5
+c: 5
+A: 0
+b: 50
+c: 0
+and you'll see.
+
+Version 1.1:
+
+Fixed a little issue where certain triangles would be solution()ed
+even if they are not possible to make in the real world.
+
+Version 1.0:
+
+The finished program.
+
+Enter 3 things about a triangle, and the program will give you the rest,
+and the area of the triangle.
+The 3 things you have to give to it is either sides or angles.
