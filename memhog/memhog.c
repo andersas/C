@@ -25,9 +25,10 @@ s_amount = amount*1024*1024;
 
 buf = (char *) malloc(s_amount);
 
+/* Touch the memory, or the OS won't actually allocate the pages */
 for (i = 0; i < s_amount; i++) {
 
-buf[i] = i%256;
+buf[i] = i%4679;
 
 }
 
