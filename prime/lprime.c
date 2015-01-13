@@ -1,19 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 #define min(a,b) = (a < b) ? a : b
 #define max(a,b) = (a > b) ? a : b
 
 long long int prime(unsigned long long int num) {
 
-	unsigned long long int base,stop;
+	unsigned long long int base;
 
 	if (num % 2 == 0 || num % 3 == 0)
 		return 0;
 
-	stop = (long long int) sqrt(num) + 1;
-	for (base = 6; base < stop; base += 6) {
+	for (base = 6; base*base<num; base += 6) {
 		if (num % (base - 1) == 0 || num % (base+1) == 0)
 			return 0;
 	}

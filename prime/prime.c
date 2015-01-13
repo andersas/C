@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 
 
 #define max(a,b) (a > b) ? a : b
@@ -7,13 +6,12 @@
 
 int prime(unsigned int num) {
 
-	unsigned int base,stop;
+	unsigned int base;
 
 	if (num % 2 == 0 || num % 3 == 0)
 		return 0;
 
-	stop = (int) sqrt(num) + 1;
-	for (base = 6; base <= stop; base += 6) {
+	for (base = 6; base*base < num; base += 6) {
 		if (num % (base - 1) == 0 || num % (base+1) == 0)
 			return 0;
 	}
