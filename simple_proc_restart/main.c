@@ -7,6 +7,7 @@
 #include <errno.h>
 #include <time.h>
 #include <signal.h>
+#include <stdbool.h>
 
 #include <bsd/unistd.h>
 
@@ -42,11 +43,20 @@ int is_error(int status) {
 	
 }
 
-pid_t respawn_here_on_crash() {
+struct crash_info {
+	
+	pid_t oldpid;
+	time_t last_restart;
+	int last_status;
 
-	const pid_t parpid = getpid();
+};
+
+_Bool respawn_here_on_crash(struct crash_info *crash) {
+
 	pid_t childpid = 0;
 	pid_t pid;
+
+	_Bool crashed = false;
 
 	char buf[16];
 	int status;
@@ -57,19 +67,25 @@ pid_t respawn_here_on_crash() {
 
 	for(;;) {
 		pid = childpid;
-		if ((childpid = fork()) == 0) { // Start the process
-			prctl(PR_SET_NAME,buf);
-			setproctitle(NULL);
-			return pid; // old child pid
+
+		while ((childpid = fork()) < 0) {
+			sleep(1); // Fails to fork
+				// may want to log this
 		}
 
-		if (childpid < 0) {
-			perror("fork");
-		} else {
-			while((pid = waitpid(childpid,&status,0)) != childpid) {
-				if (pid < 0 && errno == ECHILD) 
-					break;
-			}
+		if (childpid == 0) { // Start the process
+			prctl(PR_SET_NAME,buf);
+			setproctitle(NULL);
+			return crashed;
+		}
+
+		crash->last_restart = time(NULL);
+
+		sleep(1); // prevent excessive looping on immediate failure
+
+		while((pid = waitpid(childpid,&status,0)) != childpid) {
+			if (pid < 0 && errno == ECHILD) 
+				break;
 		}
 
 		if (pid == childpid) {
@@ -81,18 +97,22 @@ pid_t respawn_here_on_crash() {
 		}
 		// child crashed
 		printf("Child crashed, restarting...\n");
-		sleep(1);
+		
+		crashed = true;
+		crash->oldpid = childpid;
+		crash->last_status = status;
+
 	}
 
 
 
 }
 
-void watchdog(int timeout) {
+void watchdog(time_t timeout) {
 
 	if (timeout <= 0) return;
 
-	int starttime = time(NULL);
+	time_t starttime = time(NULL);
 
 	pid_t parpid = getpid();
 
@@ -130,8 +150,14 @@ int main(int argc, char **argv, char **envp) {
 
 	setproctitle_init(argc,argv,envp);
 
-	if (respawn_here_on_crash() > 0) {
-		printf("Crash detected, process restarted.\n");
+	struct crash_info crash;
+
+	if (respawn_here_on_crash(&crash)) {
+		printf("####################################\n");
+		printf("Crash detected, process restarted. ");
+		printf("Old pid %i crashed after %li seconds. ", crash.oldpid,time(NULL)-crash.last_restart);
+		diagnostics(crash.last_status);
+		printf("####################################\n");
 	}
 
 	// do something
